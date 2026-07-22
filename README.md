@@ -238,3 +238,236 @@ Tutte le costanti di configurazione si trovano in `Tech4Less/app/config/config.p
 | `APP_ENV` | `dev` abilita la visualizzazione degli errori PHP; qualsiasi altro valore la disabilita per produzione |
 
 > In questo progetto didattico le credenziali restano centralizzate nel file di configurazione per semplicità del corso; in un contesto di produzione andrebbero spostate in variabili d'ambiente e il file escluso dal controllo di versione.
+
+
+## ER Diagram
+
+erDiagram
+    USERS ||--o{ USERS_HAS_GROUPS : "appartiene a"
+    GROUPS ||--o{ USERS_HAS_GROUPS : "raggruppa"
+    GROUPS ||--o{ SERVICES_HAS_GROUPS : "abilitato a"
+    SERVICES ||--o{ SERVICES_HAS_GROUPS : "concesso a"
+
+    USERS ||--o{ ADDRESSES : "possiede"
+    USERS ||--o{ CARTS : "ha (opzionale)"
+    USERS ||--o{ ORDERS : "effettua"
+    USERS ||--o{ ORDER_STATUS_HISTORY : "aggiorna (admin, opzionale)"
+    USERS ||--o{ REVIEWS : "scrive"
+    USERS ||--o| WISHLISTS : "ha"
+    USERS ||--o{ ACTIVITY_LOG : "genera (opzionale)"
+
+    CATEGORIES ||--o{ CATEGORIES : "sotto-categoria di"
+    CATEGORIES ||--o{ PRODUCTS : "classifica"
+    BRANDS ||--o{ PRODUCTS : "produce (opzionale)"
+
+    PRODUCTS ||--o{ PRODUCT_IMAGES : "ha"
+    PRODUCTS ||--o{ PRODUCT_SPECS : "ha"
+    PRODUCTS ||--o{ CART_ITEMS : "aggiunto in"
+    PRODUCTS ||--o{ ORDER_ITEMS : "acquistato in (opzionale)"
+    PRODUCTS ||--o{ REVIEWS : "recensito in"
+    PRODUCTS ||--o{ WISHLIST_ITEMS : "salvato in"
+
+    CARTS ||--o{ CART_ITEMS : "contiene"
+
+    COUPONS ||--o{ ORDERS : "applicato a (opzionale)"
+
+    ADDRESSES ||--o{ ORDERS : "spedisce a"
+
+    ORDERS ||--o{ ORDER_ITEMS : "contiene"
+    ORDERS ||--o{ ORDER_STATUS_HISTORY : "traccia"
+
+    WISHLISTS ||--o{ WISHLIST_ITEMS : "contiene"
+
+    USERS {
+        int id PK
+        varchar username UK
+        varchar email UK
+        varchar password_hash
+        varchar nome
+        varchar cognome
+        varchar telefono
+        enum stato
+        datetime data_registrazione
+        datetime ultimo_accesso
+    }
+
+    GROUPS {
+        int id PK
+        varchar nome UK
+        varchar descrizione
+    }
+
+    USERS_HAS_GROUPS {
+        int users_id PK, FK
+        int groups_id PK, FK
+    }
+
+    SERVICES {
+        varchar username PK
+        varchar descrizione
+    }
+
+    SERVICES_HAS_GROUPS {
+        varchar services_username PK, FK
+        int groups_id PK, FK
+    }
+
+    ADDRESSES {
+        int id PK
+        int users_id FK
+        varchar etichetta
+        varchar via
+        varchar citta
+        varchar provincia
+        varchar cap
+        varchar nazione
+        tinyint predefinito
+    }
+
+    CATEGORIES {
+        int id PK
+        varchar nome
+        varchar slug UK
+        int parent_id FK
+    }
+
+    BRANDS {
+        int id PK
+        varchar nome UK
+    }
+
+    PRODUCTS {
+        int id PK
+        int categories_id FK
+        int brands_id FK
+        varchar nome
+        varchar slug UK
+        text descrizione
+        decimal prezzo
+        decimal prezzo_scontato
+        enum condizione
+        int giacenza
+        int garanzia_mesi
+        tinyint attivo
+        datetime data_creazione
+    }
+
+    PRODUCT_IMAGES {
+        int id PK
+        int products_id FK
+        varchar percorso
+        int ordine
+    }
+
+    PRODUCT_SPECS {
+        int id PK
+        int products_id FK
+        varchar chiave
+        varchar valore
+    }
+
+    CARTS {
+        int id PK
+        int users_id FK
+        varchar session_token
+        datetime data_creazione
+    }
+
+    CART_ITEMS {
+        int id PK
+        int carts_id FK
+        int products_id FK
+        int quantita
+        decimal prezzo_unitario
+    }
+
+    COUPONS {
+        int id PK
+        varchar codice UK
+        enum tipo
+        decimal valore
+        date data_inizio
+        date data_fine
+        int utilizzo_massimo
+        int utilizzi_correnti
+        tinyint attivo
+    }
+
+    ORDERS {
+        int id PK
+        int users_id FK
+        int addresses_id FK
+        int coupons_id FK
+        varchar numero_ordine UK
+        decimal subtotale
+        decimal sconto
+        decimal totale
+        enum stato
+        datetime data_ordine
+    }
+
+    ORDER_ITEMS {
+        int id PK
+        int orders_id FK
+        int products_id FK
+        varchar nome_prodotto
+        int quantita
+        decimal prezzo_unitario
+    }
+
+    ORDER_STATUS_HISTORY {
+        int id PK
+        int orders_id FK
+        enum stato
+        varchar nota
+        int users_id FK
+        datetime data_cambio
+    }
+
+    REVIEWS {
+        int id PK
+        int products_id FK
+        int users_id FK
+        tinyint voto
+        text testo
+        tinyint approvata
+        datetime data_creazione
+    }
+
+    WISHLISTS {
+        int id PK
+        int users_id FK, UK
+    }
+
+    WISHLIST_ITEMS {
+        int wishlists_id PK, FK
+        int products_id PK, FK
+        datetime data_aggiunta
+    }
+
+    CONTACT_MESSAGES {
+        int id PK
+        varchar nome
+        varchar email
+        varchar oggetto
+        text testo
+        enum stato
+        datetime data_invio
+    }
+
+    FAQS {
+        int id PK
+        varchar domanda
+        text risposta
+        int ordine
+        tinyint pubblicata
+    }
+
+    ACTIVITY_LOG {
+        int id PK
+        int users_id FK
+        varchar azione
+        varchar dettagli
+        varchar ip_address
+        datetime data_evento
+    }
