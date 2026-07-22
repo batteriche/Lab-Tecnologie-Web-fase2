@@ -242,11 +242,6 @@ Tutte le costanti di configurazione si trovano in `Tech4Less/app/config/config.p
 
 ## ER Diagram
 
-```mermaid
-erDiagram
-    USERS ||--o{ USERS_HAS_GROUPS : "appartiene a"
-    GROUPS ||--o{ USERS_HAS_GROUPS : "raggruppa"
-
 erDiagram
     USERS ||--o{ USERS_HAS_GROUPS : "appartiene a"
     GROUPS ||--o{ USERS_HAS_GROUPS : "raggruppa"
@@ -476,4 +471,3 @@ erDiagram
         varchar ip_address
         datetime data_evento
     }
-```
