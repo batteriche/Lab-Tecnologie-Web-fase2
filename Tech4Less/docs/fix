@@ -1,3 +1,0 @@
-fix: se la giacenza è a 0 non dovrebbe farmelo comprare ne metterlo nel carrello no? INvece....
-test: review??
-fix: se faccio solo la ripopolazione con seed senza ricaricare la table per non resettare il database, mi da errore di duplicazione dei prodotti

@@ -1,8 +1,0 @@
-cd /home/batteriche/Scrivania/2s3a/Lab Tech Web/Scraped Source Template/fase 2 2
-sudo su
-mysql -u root -p tech4less < database/schema.sql
-mysql -u root -p tech4less < database/seed_demo.sql
-cd public
-php -S localhost:9000
-
-password del  database: Password
