@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><[nome]> — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:48px 0; max-width:820px;">
+  <img src="<[base]>/assets/img/<[immagine]>" alt="<[nome]>" style="max-width:100%; border-radius:6px;">
+  <div class="card-cat" style="margin-top:20px;"><[condizione]></div>
+  <h1 style="margin-top:8px;"><[nome]></h1>
+  <p style="color:var(--ink-soft); margin-top:16px; max-width:60ch;"><[descrizione]></p>
+
+  <div class="price" style="font-size:1.6rem; margin-top:20px;"><[prezzo]></div>
+
+  <form method="post" action="<[base]>/carrello/aggiungi" style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+    <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+    <input type="hidden" name="products_id" value="<[products_id]>">
+    <input type="number" name="quantita" value="1" min="1" style="width:70px; padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <button type="submit" class="btn btn-primary">Aggiungi al carrello</button>
+  </form>
+
+  <form method="post" action="<[base]>/account/wishlist/aggiungi" style="margin-top:12px;">
+    <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+    <input type="hidden" name="products_id" value="<[products_id]>">
+    <button type="submit" class="btn btn-ghost">♡ Aggiungi alla wishlist</button>
+  </form>
+
+  <div class="spec-panel" style="margin-top:32px;">
+    <div class="spec-title">Scheda tecnica</div>
+    <[foreach]>
+    <div class="spec-row"><span><[chiave]></span><span><[valore]></span></div>
+    <[/foreach]>
+  </div>
+</main>
+
+<[footer]>
+</body>
+</html>

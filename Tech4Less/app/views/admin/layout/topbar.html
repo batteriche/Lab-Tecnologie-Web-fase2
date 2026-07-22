@@ -1,0 +1,10 @@
+<div class="admin-topbar">
+  <h1><[titolo_pagina]></h1>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <span class="who">Connesso come <[nome_admin]></span>
+    <form method="post" action="<[base]>/account/logout" style="display:inline;">
+      <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+      <button type="submit" class="btn btn-ghost" style="padding:6px 12px; font-size:0.8rem;">Esci</button>
+    </form>
+  </div>
+</div>

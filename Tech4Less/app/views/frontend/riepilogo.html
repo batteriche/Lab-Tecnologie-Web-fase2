@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordine confermato — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:48px 0; max-width:720px;">
+  <div class="eyebrow">Ordine confermato</div>
+  <h1>Grazie! Ordine <[numero_ordine]></h1>
+  <p style="color:var(--ink-soft); margin-top:12px;">Riceverai un'email con i dettagli di spedizione appena l'ordine viene preso in carico.</p>
+
+  <div class="spec-panel" style="margin-top:28px;">
+    <div class="spec-title">Dettaglio ordine</div>
+    <[foreach]>
+    <div class="spec-row">
+      <span><[nome_prodotto]> × <[quantita]></span>
+      <span><[subtotale_fmt]></span>
+    </div>
+    <[/foreach]>
+    <div class="spec-row" style="border-top:1px dashed var(--line); margin-top:6px; padding-top:10px;">
+      <span>Subtotale</span><span><[subtotale]></span>
+    </div>
+    <div class="spec-row"><span>Sconto</span><span><[sconto]></span></div>
+    <div class="spec-row" style="font-weight:600;"><span>Totale</span><span><[totale]></span></div>
+  </div>
+
+  <a href="<[base]>/catalogo" class="btn btn-primary" style="margin-top:28px; display:inline-flex;">Continua lo shopping</a>
+</main>
+
+<[footer]>
+</body>
+</html>

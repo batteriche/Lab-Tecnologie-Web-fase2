@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ordine — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <div class="spec-panel">
+      <div class="spec-title">Cliente</div>
+      <div class="spec-row"><span>Nome</span><span><[cliente]></span></div>
+      <div class="spec-row"><span>Email</span><span><[cliente_email]></span></div>
+      <div class="spec-row"><span>Indirizzo</span><span><[indirizzo]></span></div>
+    </div>
+
+    <table class="admin-table" style="margin-top:24px;">
+      <thead><tr><th>Prodotto</th><th>Qtà</th><th>Prezzo</th><th>Subtotale</th></tr></thead>
+      <tbody>
+      <[foreach]>
+        <tr>
+          <td><[nome_prodotto]></td>
+          <td class="num"><[quantita]></td>
+          <td class="num"><[prezzo_unitario]></td>
+          <td class="num"><[riga_subtotale]></td>
+        </tr>
+      <[/foreach]>
+      </tbody>
+    </table>
+
+    <div class="spec-panel" style="margin-top:20px;">
+      <div class="spec-row"><span>Subtotale</span><span><[subtotale]></span></div>
+      <div class="spec-row"><span>Sconto</span><span><[sconto]></span></div>
+      <div class="spec-row" style="font-weight:600;"><span>Totale</span><span><[totale]></span></div>
+    </div>
+
+    <form method="post" action="<[base]>/admin/ordini/<[id]>/stato" class="admin-form" style="margin-top:28px;">
+      <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+      <div class="row2">
+        <div>
+          <label>Nuovo stato</label>
+          <select name="stato">
+            <option value="in_attesa">In attesa</option>
+            <option value="pagato">Pagato</option>
+            <option value="spedito">Spedito</option>
+            <option value="consegnato">Consegnato</option>
+            <option value="annullato">Annullato</option>
+          </select>
+        </div>
+        <div>
+          <label>Nota (facoltativa)</label>
+          <input type="text" name="nota" placeholder="Es. numero tracking">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Aggiorna stato</button>
+    </form>
+  </main>
+</div>
+</body>
+</html>

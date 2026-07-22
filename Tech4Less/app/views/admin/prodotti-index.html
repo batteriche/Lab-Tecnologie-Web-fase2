@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prodotti — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <div class="admin-toolbar">
+      <span class="mono" style="color:var(--signal); font-size:0.85rem;">Gestione catalogo</span>
+      <a href="<[base]>/admin/prodotti/nuovo" class="btn btn-primary">+ Nuovo prodotto</a>
+    </div>
+
+    <table class="admin-table">
+      <thead><tr><th>Nome</th><th>Categoria</th><th>Prezzo</th><th>Giacenza</th><th>Stato</th><th></th></tr></thead>
+      <tbody>
+      <[foreach]>
+        <tr>
+          <td><[nome]></td>
+          <td><[categoria_nome]></td>
+          <td class="num"><[prezzo]></td>
+          <td class="num"><[giacenza]></td>
+          <td><span class="status-pill <[stato_label]>"><[stato_testo]></span></td>
+          <td>
+            <a href="<[b_prodotti]>/admin/prodotti/<[id]>/modifica" class="action-link">Modifica</a>
+            <form method="post" action="<[b_prodotti]>/admin/prodotti/<[id]>/elimina" style="display:inline;" onsubmit="return confirm('Eliminare questo prodotto?');">
+              <input type="hidden" name="csrf_token" value="<[csrf_token_riga]>">
+              <button type="submit" class="action-link danger" style="background:none; border:none; cursor:pointer; font-family:inherit;">Elimina</button>
+            </form>
+          </td>
+        </tr>
+      <[/foreach]>
+      </tbody>
+    </table>
+  </main>
+</div>
+</body>
+</html>

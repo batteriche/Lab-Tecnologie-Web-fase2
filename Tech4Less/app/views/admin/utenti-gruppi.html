@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gruppi utente — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <p style="color:var(--ink-soft); margin-bottom:20px;">Gruppi assegnati a <strong><[nome_utente]></strong>:</p>
+
+    <form method="post" action="<[base]>/admin/utenti/<[id]>/gruppi" class="admin-form">
+      <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+
+      <[foreach]>
+      <label style="display:flex; align-items:center; gap:10px; font-family:var(--font-body); text-transform:none; font-size:0.92rem; color:var(--ink);">
+        <input type="checkbox" name="gruppi[]" value="<[gruppo_id]>" <[gruppo_checked]>>
+        <[gruppo_nome]>
+      </label>
+      <[/foreach]>
+
+      <button type="submit" class="btn btn-primary">Salva gruppi</button>
+    </form>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Se il file/cartella richiesta esiste realmente (assets, css, js...), servila direttamente
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Le richieste sotto /admin vanno al front controller admin
+RewriteRule ^admin/(.*)$ admin/index.php [L,QSA]
+
+# Tutto il resto passa dal front controller pubblico
+RewriteRule ^ index.php [L,QSA]

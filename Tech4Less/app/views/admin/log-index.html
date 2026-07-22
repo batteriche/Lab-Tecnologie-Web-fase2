@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log attività — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <table class="admin-table">
+      <thead><tr><th>Data</th><th>Utente</th><th>Azione</th><th>Dettagli</th><th>IP</th></tr></thead>
+      <tbody>
+      <[foreach]>
+        <tr>
+          <td class="num"><[data_evento]></td>
+          <td><[username]></td>
+          <td><[azione]></td>
+          <td><[dettagli]></td>
+          <td class="num"><[ip_address]></td>
+        </tr>
+      <[/foreach]>
+      </tbody>
+    </table>
+  </main>
+</div>
+</body>
+</html>

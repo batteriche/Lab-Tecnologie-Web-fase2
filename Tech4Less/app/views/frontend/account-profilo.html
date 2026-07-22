@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il mio account — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:48px 0; max-width:640px;">
+  <h1>Ciao, <[nome]></h1>
+
+  <div class="spec-panel" style="margin-top:24px;">
+    <div class="spec-title">I tuoi dati</div>
+    <div class="spec-row"><span>Nome</span><span><[nome]> <[cognome]></span></div>
+    <div class="spec-row"><span>Username</span><span><[username]></span></div>
+    <div class="spec-row"><span>Email</span><span><[email]></span></div>
+  </div>
+
+  <div style="display:flex; gap:14px; margin-top:28px;">
+    <a href="<[base]>/account/ordini" class="btn btn-ghost">I miei ordini</a>
+    <a href="<[base]>/account/wishlist" class="btn btn-ghost">La mia wishlist</a>
+  </div>
+
+  <form method="post" action="<[base]>/account/logout" style="margin-top:32px;">
+    <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+    <button type="submit" class="btn btn-ghost" style="color:var(--brick); border-color:var(--brick);">Esci</button>
+  </form>
+</main>
+
+<[footer]>
+</body>
+</html>

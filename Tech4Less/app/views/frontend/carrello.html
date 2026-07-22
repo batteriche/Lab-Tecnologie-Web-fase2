@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carrello — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:48px 0; max-width:820px;">
+  <h1>Il tuo carrello</h1>
+
+  <[if!empty messaggio_vuoto]>
+  <p style="color:var(--signal); margin-top:20px;"><[messaggio_vuoto]></p>
+  <a href="<[base]>/catalogo" class="btn btn-primary" style="margin-top:12px; display:inline-flex;">Vai al catalogo</a>
+  <[/if!empty]>
+
+  <div style="margin-top:24px;">
+    <[foreach]>
+    <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding:16px 0;">
+      <div>
+        <div class="card-title" style="margin-bottom:4px;"><[nome]></div>
+        <div class="sku"><[prezzo_unitario]> cad.</div>
+      </div>
+
+      <form method="post" action="<[b_righe]>/carrello/aggiorna" style="display:flex; align-items:center; gap:10px;">
+        <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+        <input type="hidden" name="item_id" value="<[item_id]>">
+        <input type="number" name="quantita" value="<[quantita]>" min="1" style="width:60px; padding:8px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+        <button type="submit" class="btn btn-ghost" style="padding:8px 14px;">Aggiorna</button>
+      </form>
+
+      <div class="price"><[subtotale]></div>
+
+      <form method="post" action="<[b_righe]>/carrello/rimuovi">
+        <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+        <input type="hidden" name="item_id" value="<[item_id]>">
+        <button type="submit" class="icon-btn" aria-label="Rimuovi" style="color:var(--brick);">✕</button>
+      </form>
+    </div>
+    <[/foreach]>
+  </div>
+
+  <div style="display:flex; justify-content:flex-end; align-items:center; gap:16px; margin-top:32px;">
+    <span style="color:var(--ink-soft);">Totale</span>
+    <span class="price" style="font-size:1.4rem;"><[totale]></span>
+  </div>
+
+  <div style="display:flex; justify-content:flex-end; margin-top:20px;">
+    <a href="<[base]>/checkout" class="btn btn-primary">Procedi al checkout</a>
+  </div>
+</main>
+
+<[footer]>
+</body>
+</html>

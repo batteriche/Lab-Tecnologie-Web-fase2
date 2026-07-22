@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Messaggi — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <table class="admin-table">
+      <thead><tr><th>Nome</th><th>Email</th><th>Oggetto</th><th>Stato</th><th>Data</th><th></th></tr></thead>
+      <tbody>
+      <[foreach]>
+        <tr>
+          <td><[nome]></td>
+          <td><[email]></td>
+          <td><[oggetto]></td>
+          <td><span class="status-pill <[stato]>"><[stato]></span></td>
+          <td><[data_invio]></td>
+          <td><a href="<[b_messaggi]>/admin/messaggi/<[id]>" class="action-link">Apri →</a></td>
+        </tr>
+      <[/foreach]>
+      </tbody>
+    </table>
+  </main>
+</div>
+</body>
+</html>

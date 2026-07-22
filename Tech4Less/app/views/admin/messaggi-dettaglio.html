@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Messaggio — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <div class="spec-panel">
+      <div class="spec-row"><span>Da</span><span><[nome]> — <[email]></span></div>
+      <div class="spec-row"><span>Oggetto</span><span><[oggetto]></span></div>
+      <div class="spec-row"><span>Data</span><span><[data_invio]></span></div>
+    </div>
+
+    <p style="margin-top:20px; padding:16px; background:var(--surface); border:1px solid var(--line); border-radius:4px;"><[testo]></p>
+
+    <form method="post" action="<[base]>/admin/messaggi/<[id]>/stato" class="admin-form" style="margin-top:24px; max-width:320px;">
+      <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+      <div>
+        <label>Stato</label>
+        <select name="stato">
+          <option value="nuovo">Nuovo</option>
+          <option value="letto">Letto</option>
+          <option value="risposto">Risposto</option>
+          <option value="archiviato">Archiviato</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Aggiorna stato</button>
+    </form>
+  </main>
+</div>
+</body>
+</html>

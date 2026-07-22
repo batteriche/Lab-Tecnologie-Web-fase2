@@ -1,0 +1,97 @@
+.
+├── app
+│   ├── config
+│   │   ├── config.php
+│   │   └── routes.php
+│   ├── controllers
+│   │   ├── AccountController.php
+│   │   ├── admin
+│   │   │   ├── DashboardController.php
+│   │   │   ├── LogController.php
+│   │   │   ├── MessaggiController.php
+│   │   │   ├── OrdiniController.php
+│   │   │   ├── ProdottiController.php
+│   │   │   └── UtentiController.php
+│   │   ├── CarrelloController.php
+│   │   ├── CatalogoController.php
+│   │   ├── CheckoutController.php
+│   │   └── HomeController.php
+│   ├── core
+│   │   ├── AdminController.php
+│   │   ├── Auth.php
+│   │   ├── autoload.php
+│   │   ├── Controller.php
+│   │   ├── Database.php
+│   │   ├── PermissionService.php
+│   │   ├── Router.php
+│   │   └── Validator.php
+│   ├── models
+│   │   ├── ActivityLog.php
+│   │   ├── Address.php
+│   │   ├── Cart.php
+│   │   ├── Category.php
+│   │   ├── ContactMessage.php
+│   │   ├── Coupon.php
+│   │   ├── Order.php
+│   │   ├── Product.php
+│   │   ├── User.php
+│   │   └── Wishlist.php
+│   ├── services
+│   │   ├── CartService.php
+│   │   ├── OrderService.php
+│   │   └── PermissionService.php
+│   └── views
+│       ├── admin
+│       │   ├── dashboard.html
+│       │   ├── layout
+│       │   │   ├── sidebar.html
+│       │   │   └── topbar.html
+│       │   ├── log-index.html
+│       │   ├── messaggi-dettaglio.html
+│       │   ├── messaggi-index.html
+│       │   ├── ordini-dettaglio.html
+│       │   ├── ordini-index.html
+│       │   ├── prodotti-form.html
+│       │   ├── prodotti-index.html
+│       │   ├── utenti-gruppi.html
+│       │   └── utenti-index.html
+│       ├── frontend
+│       │   ├── 403.html
+│       │   ├── 404.html
+│       │   ├── account-login.html
+│       │   ├── account-ordini.html
+│       │   ├── account-profilo.html
+│       │   ├── account-registrati.html
+│       │   ├── account-wishlist.html
+│       │   ├── carrello.html
+│       │   ├── catalogo.html
+│       │   ├── checkout.html
+│       │   ├── chi-siamo.html
+│       │   ├── faq.html
+│       │   ├── home.html
+│       │   ├── prodotto.html
+│       │   └── riepilogo.html
+│       ├── layout
+│       │   ├── footer.html
+│       │   └── header.html
+│       └── template2.inc.php
+├── architettura.md
+├── avvio.txt
+├── database
+│   ├── schema.sql
+│   └── seed_demo.sql
+├── docs
+├── public
+│   ├── admin
+│   │   └── index.php
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── admin.css
+│   │   │   └── style.css
+│   │   ├── img
+│   │   └── js
+│   │       └── script.js
+│   └── index.php
+└── tree.txt
+
+21 directories, 74 files

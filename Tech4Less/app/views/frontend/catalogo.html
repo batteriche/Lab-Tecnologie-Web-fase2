@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><[titolo_pagina]> — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding-top:40px;">
+
+  <div class="section-head" style="border-bottom:none; margin-bottom:24px;">
+    <h2><[titolo_pagina]></h2>
+  </div>
+
+  <div class="catalog-layout">
+
+    <aside class="filters">
+      <h4>Categoria</h4>
+      <div class="filter-group">
+        <a href="<[base]>/catalogo" style="display:block; margin-bottom:8px; color:var(--ink-soft); font-size:0.88rem;">Tutte le categorie</a>
+        <[foreach]>
+        <a href="<[b_categorie]>/catalogo/<[categoria_slug]>" style="display:block; margin-bottom:8px; color:var(--ink-soft); font-size:0.88rem;"><[categoria_nome_lista]></a>
+        <[/foreach]>
+      </div>
+    </aside>
+
+    <section>
+      <[if!empty messaggio_vuoto]>
+      <p style="color:var(--signal);"><[messaggio_vuoto]></p>
+      <[/if!empty]>
+
+      <div class="grid">
+        <[foreach]>
+        <article class="card">
+          <div class="card-media"><img src="/assets/img/<[immagine]>" alt="<[nome]>" loading="lazy"></div>
+          <div class="card-body">
+            <div class="card-cat"><[categoria_nome]></div>
+            <div class="card-title"><[nome]></div>
+            <div class="price-band">
+              <span class="band-strip"><i></i><i></i><i></i></span>
+              <span class="price"><[prezzo]><[badge_sconto]></span>
+            </div>
+            <a href="<[b_prodotti]>/prodotto/<[slug]>" class="add-btn" style="display:block; text-align:center; text-decoration:none;">Vedi prodotto</a>
+          </div>
+        </article>
+        <[/foreach]>
+      </div>
+    </section>
+  </div>
+</main>
+
+<[footer]>
+</body>
+</html>

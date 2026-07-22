@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prodotto — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <form method="post" action="<[base]><[azione]>" class="admin-form" enctype="multipart/form-data">
+      <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+
+      <[if!empty immagine_attuale]>
+      <div>
+        <label>Immagine attuale</label>
+        <img src="<[base]>/assets/img/<[immagine_attuale]>" style="max-width:160px; border:1px solid var(--line); border-radius:4px; display:block;">
+      </div>
+      <[/if!empty]>
+
+      <div>
+        <label>Immagine prodotto (JPG, PNG o WEBP, max 5MB)</label>
+        <input type="file" name="immagine" accept="image/jpeg,image/png,image/webp">
+      </div>
+
+      <div>
+        <label>Nome prodotto</label>
+        <input type="text" name="nome" value="<[nome]>" required>
+      </div>
+
+      <div class="row2">
+        <div>
+          <label>Categoria</label>
+          <select name="categories_id" required>
+          <[foreach]>
+            <option value="<[cat_id]>"><[cat_nome]></option>
+          <[/foreach]>
+          </select>
+        </div>
+        <div>
+          <label>Giacenza</label>
+          <input type="number" name="giacenza" value="<[giacenza]>" min="0">
+        </div>
+      </div>
+
+      <div>
+        <label>Descrizione</label>
+        <textarea name="descrizione" rows="4"><[descrizione]></textarea>
+      </div>
+
+      <div class="row3">
+        <div>
+          <label>Prezzo (€)</label>
+          <input type="text" name="prezzo" value="<[prezzo]>" required>
+        </div>
+        <div>
+          <label>Prezzo scontato (€)</label>
+          <input type="text" name="prezzo_scontato" value="<[prezzo_scontato]>">
+        </div>
+        <div>
+          <label>Garanzia (mesi)</label>
+          <input type="number" name="garanzia_mesi" value="<[garanzia_mesi]>">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Salva prodotto</button>
+    </form>
+  </main>
+</div>
+</body>
+</html>

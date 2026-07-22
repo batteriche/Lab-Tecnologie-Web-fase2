@@ -1,0 +1,23 @@
+<nav class="nav">
+  <div class="container">
+    <a href="<[base]>/" class="brand">TECH<span class="accent">4</span>LESS</a>
+    <ul class="nav-links">
+      <li><a href="<[base]>/">Home</a></li>
+      <li><a href="<[base]>/catalogo">Catalogo</a></li>
+      <li><a href="<[base]>/chi-siamo">Chi siamo</a></li>
+      <li><a href="<[base]>/faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" data-theme-toggle aria-label="Cambia tema">☾</button>
+      <[if!empty utente_loggato]>
+      <a href="<[base]>/account" class="icon-btn" aria-label="Account" title="Ciao <[nome_utente]>">👤</a>
+      <[/if!empty]>
+      <[ifempty utente_loggato]>
+      <a href="<[base]>/account/login" class="icon-btn" aria-label="Accedi">👤</a>
+      <[/ifempty]>
+      <a href="<[base]>/carrello" class="icon-btn cart-badge" aria-label="Carrello">
+        🛒<span class="count" data-cart-count><[carrello_conteggio]></span>
+      </a>
+    </div>
+  </div>
+</nav>

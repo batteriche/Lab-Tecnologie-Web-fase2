@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:48px 0; max-width:720px;">
+  <h1>Checkout</h1>
+
+  <div class="spec-panel" style="margin-top:24px;">
+    <div class="spec-title">Riepilogo carrello</div>
+    <[foreach]>
+    <div class="spec-row"><span><[nome]> × <[quantita]></span><span><[subtotale]></span></div>
+    <[/foreach]>
+    <div class="spec-row" style="border-top:1px dashed var(--line); margin-top:6px; padding-top:10px;">
+      <span>Totale</span><span><[totale]></span>
+    </div>
+  </div>
+
+  <form method="post" action="<[base]>/checkout/conferma" style="margin-top:32px; display:grid; gap:16px;">
+    <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+
+    <h3 style="font-size:1rem;">Indirizzo salvato (facoltativo)</h3>
+    <[foreach]>
+    <label style="display:flex; gap:10px; align-items:flex-start; border:1px solid var(--line); border-radius:4px; padding:12px;">
+      <input type="radio" name="addresses_id" value="<[id]>">
+      <span><[etichetta]> — <[via]>, <[citta]> (<[provincia]>) <[cap]></span>
+    </label>
+    <[/foreach]>
+    <p style="color:var(--signal); font-size:0.85rem;">Oppure inserisci un nuovo indirizzo qui sotto (lascia vuota la selezione sopra):</p>
+
+    <h3 style="font-size:1rem;">Nuovo indirizzo di spedizione</h3>
+    <input type="text" name="etichetta" placeholder="Etichetta (es. Casa, Ufficio)" style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <input type="text" name="via" placeholder="Via e numero civico" style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px;">
+      <input type="text" name="citta" placeholder="Città" style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+      <input type="text" name="provincia" placeholder="Prov." maxlength="2" style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+      <input type="text" name="cap" placeholder="CAP" style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    </div>
+
+    <h3 style="font-size:1rem; margin-top:12px;">Codice sconto</h3>
+    <input type="text" name="coupon" placeholder="Codice coupon (facoltativo)" style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+
+    <button type="submit" class="btn btn-primary" style="margin-top:12px;">Conferma ordine</button>
+  </form>
+</main>
+
+<[footer]>
+</body>
+</html>

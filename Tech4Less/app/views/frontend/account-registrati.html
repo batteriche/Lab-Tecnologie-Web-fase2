@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registrati — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:56px 0; max-width:460px;">
+  <h1>Crea un account</h1>
+
+  <form method="post" action="<[base]>/account/registrati" style="margin-top:24px; display:grid; gap:14px;">
+    <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <input type="text" name="nome" placeholder="Nome" required style="padding:11px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+      <input type="text" name="cognome" placeholder="Cognome" required style="padding:11px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    </div>
+    <input type="text" name="username" placeholder="Username" required style="padding:11px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <input type="email" name="email" placeholder="Email" required style="padding:11px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <input type="password" name="password" placeholder="Password (min. 8 caratteri)" required minlength="8" style="padding:11px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <input type="tel" name="telefono" placeholder="Telefono (facoltativo)" style="padding:11px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <button type="submit" class="btn btn-primary">Crea account</button>
+  </form>
+
+  <p style="margin-top:20px; color:var(--ink-soft); font-size:0.9rem;">
+    Hai già un account? <a href="<[base]>/account/login" style="color:var(--copper);">Accedi</a>
+  </p>
+</main>
+
+<[footer]>
+</body>
+</html>

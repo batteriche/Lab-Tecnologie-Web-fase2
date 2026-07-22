@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chi siamo — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:56px 0; max-width:760px;">
+  <h1>Chi siamo</h1>
+  <p style="color:var(--ink-soft); margin-top:16px;">
+    TECH4LESS nasce come progetto didattico per il corso di Tecnologie del Web.
+    Vendiamo componenti nuovi e ricondizionati, con scheda tecnica reale e garanzia scritta in chiaro.
+  </p>
+
+  <h2 style="margin-top:40px; font-size:1.2rem;">Scrivici</h2>
+  <form method="post" action="<[base]>/contatti" style="margin-top:16px; display:grid; gap:12px; max-width:480px;">
+    <input type="hidden" name="csrf_token" value="<[csrf_token]>">
+    <input type="text" name="nome" placeholder="Nome" required style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <input type="email" name="email" placeholder="Email" required style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <input type="text" name="oggetto" placeholder="Oggetto" required style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+    <textarea name="testo" placeholder="Messaggio" required rows="4" style="padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);"></textarea>
+    <button type="submit" class="btn btn-primary">Invia messaggio</button>
+  </form>
+</main>
+
+<[footer]>
+</body>
+</html>

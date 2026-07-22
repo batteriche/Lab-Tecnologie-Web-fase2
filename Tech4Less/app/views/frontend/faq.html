@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:56px 0; max-width:720px;">
+  <h1>Domande frequenti</h1>
+
+  <div style="margin-top:24px;">
+    <[foreach]>
+    <div style="border-bottom:1px solid var(--line); padding:16px 0;">
+      <h3 style="font-size:1rem;"><[domanda]></h3>
+      <p style="color:var(--ink-soft); margin-top:8px;"><[risposta]></p>
+    </div>
+    <[/foreach]>
+  </div>
+</main>
+
+<[footer]>
+</body>
+</html>

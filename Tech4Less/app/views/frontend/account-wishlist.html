@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La mia wishlist — TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<main class="container" style="padding:48px 0;">
+  <h1>La mia wishlist</h1>
+
+  <[if!empty messaggio_vuoto]>
+  <p style="color:var(--signal); margin-top:20px;"><[messaggio_vuoto]></p>
+  <a href="<[base]>/catalogo" class="btn btn-primary" style="margin-top:12px; display:inline-flex;">Vai al catalogo</a>
+  <[/if!empty]>
+
+  <div class="grid" style="margin-top:24px;">
+    <[foreach]>
+    <article class="card">
+      <div class="card-media"><img src="/assets/img/<[immagine]>" alt="<[nome]>" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-title"><[nome]></div>
+        <div class="price-band">
+          <span class="band-strip"><i></i><i></i><i></i></span>
+          <span class="price"><[prezzo]></span>
+        </div>
+        <a href="<[b_prodotti]>/prodotto/<[slug]>" class="add-btn" style="display:block; text-align:center; text-decoration:none;">Vedi prodotto</a>
+      </div>
+    </article>
+    <[/foreach]>
+  </div>
+</main>
+
+<[footer]>
+</body>
+</html>

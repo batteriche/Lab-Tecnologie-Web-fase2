@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TECH4LESS — Tecnologia, prezzo onesto</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+</head>
+<body>
+
+<[header]>
+
+<header class="hero">
+  <div class="container">
+    <div>
+      <div class="eyebrow">Nuovo · Ricondizionato · Garanzia reale</div>
+      <h1>Componenti e dispositivi,<br>al <em>prezzo del silicio</em>,<br>non del marketing.</h1>
+      <p>Scheda tecnica vera, non foto patinate. Ogni prodotto arriva con specifiche misurate, stato di condizione dichiarato e garanzia scritta in chiaro — non in un asterisco.</p>
+      <div style="display:flex; gap:14px;">
+        <a href="<[base]>/catalogo" class="btn btn-primary">Esplora il catalogo</a>
+        <a href="<[base]>/chi-siamo" class="btn btn-ghost">Come selezioniamo i prodotti</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="section">
+    <div class="section-head"><h2>Categorie</h2></div>
+    <div class="cat-grid">
+      <[foreach]>
+      <a class="cat-card" href="<[b_categorie]>/catalogo/<[categoria_slug]>">
+        <h3><[categoria_nome_lista]></h3>
+      </a>
+      <[/foreach]>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>In evidenza questa settimana</h2>
+      <a href="<[base]>/catalogo">Vedi tutto il catalogo →</a>
+    </div>
+
+    <[ifempty prodotti_vuoto]>
+    <p style="color:var(--signal);">Nessun prodotto in evidenza al momento.</p>
+    <[/ifempty]>
+
+    <div class="grid">
+      <[foreach]>
+      <article class="card">
+        <div class="card-media"><img src="/assets/img/<[immagine]>" alt="<[nome]>" loading="lazy"></div>
+        <div class="card-body">
+          <[badge_refurb]>
+          <div class="card-cat"><[categoria_nome]></div>
+          <div class="card-title"><[nome]></div>
+          <div class="price-band">
+            <span class="band-strip"><i></i><i></i><i></i></span>
+            <span class="price"><[prezzo]><[badge_sconto]></span>
+          </div>
+          <a href="<[b_prodotti]>/prodotto/<[slug]>" class="add-btn" style="display:block; text-align:center; text-decoration:none;">Vedi prodotto</a>
+        </div>
+      </article>
+      <[/foreach]>
+    </div>
+  </section>
+
+</main>
+
+<[footer]>
+</body>
+</html>

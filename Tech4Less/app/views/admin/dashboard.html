@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Admin TECH4LESS</title>
+<link rel="stylesheet" href="<[base]>/assets/css/style.css">
+<link rel="stylesheet" href="<[base]>/assets/css/admin.css">
+</head>
+<body>
+<div class="admin-shell">
+  <aside class="admin-sidebar"><[sidebar]></aside>
+  <main class="admin-main">
+    <[topbar]>
+
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="card"><div class="card-body">
+        <div class="card-cat">Ordini totali</div>
+        <div class="price" style="font-size:1.5rem;"><[totale_ordini]></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-cat">Fatturato</div>
+        <div class="price" style="font-size:1.5rem;"><[fatturato]></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-cat">Prodotti attivi</div>
+        <div class="price" style="font-size:1.5rem;"><[totale_prodotti]></div>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="card-cat">Utenti registrati</div>
+        <div class="price" style="font-size:1.5rem;"><[totale_utenti]></div>
+      </div></div>
+    </div>
+
+    <div class="admin-toolbar" style="margin-top:36px;">
+      <h2 style="font-size:1.1rem;">Ultimi ordini</h2>
+      <a href="<[base]>/admin/ordini" class="action-link">Vedi tutti →</a>
+    </div>
+
+    <table class="admin-table">
+      <thead><tr><th>Numero</th><th>Cliente</th><th>Stato</th><th>Data</th><th>Totale</th></tr></thead>
+      <tbody>
+      <[foreach]>
+        <tr>
+          <td class="num"><[numero_ordine]></td>
+          <td><[cliente]></td>
+          <td><span class="status-pill <[stato]>"><[stato_label]></span></td>
+          <td><[data_ordine]></td>
+          <td class="num"><[totale]></td>
+        </tr>
+      <[/foreach]>
+      </tbody>
+    </table>
+  </main>
+</div>
+</body>
+</html>

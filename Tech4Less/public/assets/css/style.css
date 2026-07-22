@@ -1,0 +1,582 @@
+/* =====================================================================
+   TECH4LESS — Design system
+   Palette: carta fredda / inchiostro / rame / verde PCB smorzato
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg:        #ECEEE9;
+  --surface:   #F7F8F5;
+  --ink:       #1B2226;
+  --ink-soft:  #4B5359;
+  --signal:    #6B7278;
+  --copper:    #B8743B;
+  --copper-dim:#8F5A2B;
+  --pcb-green: #3F7A5C;
+  --brick:     #C1443D;
+  --line:      #D2D5CC;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'IBM Plex Sans', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
+
+  --radius: 3px;
+  --nav-h: 68px;
+}
+
+[data-theme="dark"] {
+  --bg:        #10151A;
+  --surface:   #161C22;
+  --ink:       #EDEEEA;
+  --ink-soft:  #B7BDC1;
+  --signal:    #7C8388;
+  --copper:    #D08A4E;
+  --copper-dim:#B8743B;
+  --pcb-green: #5CA57D;
+  --brick:     #DB6A63;
+  --line:      #26303740;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: background .25s ease, color .25s ease;
+}
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.mono { font-family: var(--font-mono); }
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------------------------------------------------------------------
+   Nav — la "traccia" che si salda sotto la voce attiva
+   --------------------------------------------------------------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.brand .accent { color: var(--copper); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  position: relative;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  padding: 6px 0;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--copper);
+  transition: width .28s ease, left .28s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--ink);
+}
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+  left: 0;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-btn {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  cursor: pointer;
+  color: var(--ink);
+  transition: border-color .2s ease, transform .2s ease;
+}
+.icon-btn:hover { border-color: var(--copper); transform: translateY(-1px); }
+
+.cart-badge {
+  position: relative;
+}
+.cart-badge .count {
+  position: absolute;
+  top: -6px; right: -6px;
+  background: var(--brick);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  min-width: 16px; height: 16px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  line-height: 1;
+}
+
+/* ---------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------- */
+
+.hero {
+  padding: 88px 0 64px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--copper);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.eyebrow::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--pcb-green);
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--copper);
+}
+
+.hero p {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin-bottom: 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.btn-primary {
+  background: var(--copper);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--copper-dim); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.btn-ghost:hover { border-color: var(--copper); }
+
+/* Spec panel — il "datasheet" visivo dell'hero */
+.spec-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 26px;
+  position: relative;
+}
+.spec-panel::before,
+.spec-panel::after {
+  content: '';
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  top: 12px;
+}
+.spec-panel::before { left: 12px; }
+.spec-panel::after  { right: 12px; }
+
+.spec-panel .spec-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--signal);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--line);
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-row span:first-child { color: var(--ink-soft); }
+.spec-row span:last-child { font-family: var(--font-mono); }
+
+/* ---------------------------------------------------------------------
+   Sezioni generiche
+   --------------------------------------------------------------------- */
+
+.section {
+  padding: 64px 0;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+}
+.section-head h2 { font-size: 1.6rem; }
+.section-head a { font-size: 0.88rem; color: var(--copper); }
+
+/* ---------------------------------------------------------------------
+   Product card — la firma: fascia prezzo stile "resistore" + foro d'angolo
+   --------------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.card:hover { border-color: var(--copper); transform: translateY(-2px); }
+
+/* foro di montaggio d'angolo, come su un PCB */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  z-index: 2;
+}
+
+.card-media {
+  aspect-ratio: 4/3;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  color: var(--signal);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-body { padding: 16px; }
+
+.card-cat {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--signal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.card-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  min-height: 2.4em;
+}
+
+/* fascia prezzo stile banda resistore */
+.price-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.price-band .band-strip {
+  display: flex;
+  gap: 3px;
+  margin-right: 10px;
+}
+.band-strip i {
+  width: 4px; height: 18px;
+  border-radius: 1px;
+  background: var(--line);
+}
+.band-strip i:nth-child(1) { background: var(--copper); }
+.band-strip i:nth-child(2) { background: var(--pcb-green); }
+.band-strip i:nth-child(3) { background: var(--ink-soft); }
+
+.price {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+.price .old {
+  font-size: 0.75rem;
+  color: var(--signal);
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.sku {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--signal);
+  margin-top: 4px;
+}
+
+.add-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 9px;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.add-btn:hover {
+  background: var(--copper);
+  border-color: var(--copper);
+  color: #fff;
+}
+
+.tag-refurb {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  color: var(--pcb-green);
+  border: 1px solid var(--pcb-green);
+  border-radius: 20px;
+  padding: 2px 8px;
+  margin-bottom: 8px;
+}
+
+/* ---------------------------------------------------------------------
+   Categorie
+   --------------------------------------------------------------------- */
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.cat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 20px;
+  transition: border-color .2s ease;
+}
+.cat-card:hover { border-color: var(--copper); }
+.cat-card .n {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--signal);
+}
+.cat-card h3 { font-size: 1rem; margin-top: 6px; }
+
+/* ---------------------------------------------------------------------
+   Footer
+   --------------------------------------------------------------------- */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 48px 0 32px;
+  margin-top: 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.footer-grid h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 14px;
+}
+.footer-grid ul { list-style: none; padding: 0; margin: 0; }
+.footer-grid li { margin-bottom: 8px; font-size: 0.88rem; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--signal);
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------------
+   Filtri catalogo (pagina catalogo.html)
+   --------------------------------------------------------------------- */
+
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+}
+
+.filters {
+  border-right: 1px solid var(--line);
+  padding-right: 24px;
+}
+.filters h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line);
+}
+.filter-group { margin-bottom: 28px; }
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.filter-group input { accent-color: var(--copper); }
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: var(--signal);
+}
+.toolbar select {
+  font-family: var(--font-body);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+}
+
+/* ---------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .catalog-layout { grid-template-columns: 1fr; }
+  .filters { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; padding-bottom: 20px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
