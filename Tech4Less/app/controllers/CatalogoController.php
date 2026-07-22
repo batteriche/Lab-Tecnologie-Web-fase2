@@ -39,17 +39,25 @@ class CatalogoController extends Controller
 
         $specifiche = $productModel->specifiche($prodotto['id']);
 
+        // Calcoliamo se il prodotto è esaurito
+        $giacenza = (int) $prodotto['giacenza'];
+        $disabledAttr = $giacenza <= 0 ? 'disabled' : '';
+        $testoBottone = $giacenza <= 0 ? 'Esaurito' : 'Aggiungi al carrello';
+
         $this->render('frontend/prodotto', [
-            'header'      => $this->renderPartial('layout/header', $this->headerData('catalogo')),
-            'footer'      => $this->renderPartial('layout/footer', []),
-            'csrf_token'  => $this->csrfToken(),
-            'products_id' => $prodotto['id'],
-            'nome'        => $prodotto['nome'],
-            'descrizione' => $prodotto['descrizione'],
-            'prezzo'      => $prodotto['prezzo'],
-            'condizione'  => $prodotto['condizione'] === 'ricondizionato' ? 'Ricondizionato' : 'Nuovo',
-            'immagine'    => $prodotto['immagine'],
-            'specifiche'  => $specifiche, // righe: chiave, valore
+            'header'        => $this->renderPartial('layout/header', $this->headerData('catalogo')),
+            'footer'        => $this->renderPartial('layout/footer', []),
+            'csrf_token'    => $this->csrfToken(),
+            'products_id'   => $prodotto['id'],
+            'nome'          => $prodotto['nome'],
+            'descrizione'   => $prodotto['descrizione'],
+            'prezzo'        => $prodotto['prezzo'],
+            'condizione'    => $prodotto['condizione'] === 'ricondizionato' ? 'Ricondizionato' : 'Nuovo',
+            'immagine'      => $prodotto['immagine'],
+            'giacenza'      => $giacenza,
+            'disabled_attr' => $disabledAttr, // <-- Passiamo l'attributo 'disabled' se è 0
+            'testo_bottone' => $testoBottone, // <-- Cambiamo dinamicamente il testo del bottone
+            'specifiche'    => $specifiche,
         ]);
     }
 

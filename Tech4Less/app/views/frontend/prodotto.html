@@ -18,13 +18,24 @@
 
   <div class="price" style="font-size:1.6rem; margin-top:20px;"><[prezzo]></div>
 
-  <form method="post" action="<[base]>/carrello/aggiungi" style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+    <!-- NUOVA RIGA: Mostra la giacenza in chiaro -->
+  <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-soft);">
+    Disponibilità: <strong><[giacenza]></strong> pezzi in magazzino
+  </p>
+
+<!-- Form di aggiunta al carrello con il blocco sul "max" -->
+<form method="post" action="<[base]>/carrello/aggiungi" style="margin-top:12px; display:flex; gap:12px; align-items:center;">
     <input type="hidden" name="csrf_token" value="<[csrf_token]>">
     <input type="hidden" name="products_id" value="<[products_id]>">
-    <input type="number" name="quantita" value="1" min="1" style="width:70px; padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
-    <button type="submit" class="btn btn-primary">Aggiungi al carrello</button>
+    
+    <input type="number" name="quantita" value="1" min="1" max="<[giacenza]>" <[disabled_attr]>
+           oninvalid="this.setCustomValidity('Non ce ne sono abbastanza in stock!')"
+           oninput="this.setCustomValidity('')"
+           style="width:70px; padding:10px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink);">
+           
+    <button type="submit" class="btn btn-primary" <[disabled_attr]>><[testo_bottone]></button>
   </form>
-
+  
   <form method="post" action="<[base]>/account/wishlist/aggiungi" style="margin-top:12px;">
     <input type="hidden" name="csrf_token" value="<[csrf_token]>">
     <input type="hidden" name="products_id" value="<[products_id]>">

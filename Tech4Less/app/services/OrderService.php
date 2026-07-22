@@ -11,12 +11,14 @@ class OrderService
     private Order $orderModel;
     private Coupon $couponModel;
     private Cart $cartModel;
+    private Product $productModel;
 
     public function __construct()
     {
         $this->orderModel  = new Order();
         $this->couponModel = new Coupon();
         $this->cartModel   = new Cart();
+        $this->productModel = new Product();
     }
 
     /**
@@ -66,11 +68,23 @@ class OrderService
             ]);
 
             foreach ($righeCarrello as $riga) {
+                // 1. Definiamo le variabili per comodità
+                $quantitaRichiesta = (int) $riga['quantita'];
+                $productId = (int) $riga['products_id'];
+                
+                // 2. TENTA DI DECREMENTARE LA GIACENZA PRIMA DI INSERIRE LA RIGA
+                $giacenzaScalata = $this->productModel->decrementaGiacenza($productId, $quantitaRichiesta);
+                
+                if (!$giacenzaScalata) {
+                    throw new Exception("Giacenza insufficiente per il prodotto: " . $riga['nome']);
+                }
+
+                // 3. SE LA GIACENZA E' SUFFICIENTE, AGGIUNGI LA RIGA ALL'ORDINE
                 $this->orderModel->aggiungiRiga(
                     $orderId,
-                    (int) $riga['products_id'],
+                    $productId,
                     $riga['nome'],
-                    (int) $riga['quantita'],
+                    $quantitaRichiesta,
                     (float) $riga['prezzo_unitario']
                 );
             }

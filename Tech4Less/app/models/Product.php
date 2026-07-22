@@ -193,4 +193,25 @@ class Product
         }
         return '€ ' . number_format($valore, 2, ',', '.');
     }
+
+    /**
+     * Decrementa la giacenza di un prodotto in modo sicuro.
+     */
+/**
+     * Decrementa la giacenza di un prodotto in modo sicuro.
+     */
+    public function decrementaGiacenza(int $productId, int $quantita): bool
+    {
+        // Usiamo due nomi separati per la quantità (:q1 e :q2) per evitare l'errore HY093 di PDO
+        $sql = 'UPDATE products SET giacenza = giacenza - :q1 WHERE id = :id AND giacenza >= :q2';
+        $stmt = Database::getConnection()->prepare($sql);
+        
+        $stmt->bindValue(':q1', $quantita, PDO::PARAM_INT);
+        $stmt->bindValue(':q2', $quantita, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $productId, PDO::PARAM_INT);
+        
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
 }
