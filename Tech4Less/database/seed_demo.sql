@@ -17,7 +17,7 @@ USE tech4less;
 -- ---------------------------------------------------------------------
 INSERT IGNORE INTO users (username, email, password_hash, nome, cognome, telefono, stato) VALUES
 ('r.daviero', 'admin@email.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Riccardo', 'D''Aviero', NULL, 'attivo'),
-('a.dedominicis', 'admin2@email.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Alessia', 'De Dominicis', NULL, 'attivo'),
+('a.dedominicis', 'magazziniere@email.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Alessia', 'De Dominicis', NULL, 'attivo'),
 ('a.pierantonio', 'cliente@email.it', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Alfonso', 'Pierantonio', NULL, 'attivo');
 
 -- users_has_groups ha PRIMARY KEY (users_id, groups_id) -> INSERT IGNORE basta
@@ -26,7 +26,7 @@ INSERT IGNORE INTO users (username, email, password_hash, nome, cognome, telefon
 -- riscritta con una SELECT su username invece dell'id fisso.
 INSERT IGNORE INTO users_has_groups (users_id, groups_id) VALUES
 (1, 2),
-(2, 2),
+(2, 3),
 (3, 1);
 
 -- ---------------------------------------------------------------------
@@ -161,6 +161,14 @@ WHERE NOT EXISTS (SELECT 1 FROM faqs WHERE domanda = 'Come so se questa componen
 INSERT INTO contact_messages (nome, email, oggetto, testo, stato)
 SELECT * FROM (SELECT 'Luca Forlizzi' AS nome, 'luca@email.it' AS email, 'Informazioni su un componente' AS oggetto, 'Salve, volevo sapere se la RTX 5070 richiede un cavo 12VHPWR o usa i classici 8-pin.' AS testo, 'nuovo' AS stato) t
 WHERE NOT EXISTS (SELECT 1 FROM contact_messages WHERE email = 'luca@email.it' AND oggetto = 'Informazioni su un componente');
+
+INSERT INTO contact_messages (nome, email, oggetto, testo, stato)
+SELECT * FROM (SELECT 'Marco Aurelio' AS nome, 'marco@email.it' AS email, 'Un ringraziamento speciale' AS oggetto, 'Volevo ringraziarvi, le spedizioni sono state velocissime e tutto è arrivato in condizioni perfette.' AS testo, 'nuovo' AS stato) t
+WHERE NOT EXISTS (SELECT 1 FROM contact_messages WHERE email = 'marco@email.it' AND oggetto = 'Un ringraziamento speciale');
+
+INSERT INTO contact_messages (nome, email, oggetto, testo, stato)
+SELECT * FROM (SELECT 'Chester' AS nome, 'park@email.it' AS email, 'Disponibilità prodotti' AS oggetto, 'Quando tornano disponibili le ram?' AS testo, 'letto' AS stato) t
+WHERE NOT EXISTS (SELECT 1 FROM contact_messages WHERE email = 'park@email.it' AND oggetto = 'Disponibilità prodotti');
 
 INSERT INTO contact_messages (nome, email, oggetto, testo, stato)
 SELECT * FROM (SELECT 'Anna Pepe' AS nome, 'anna@email.it' AS email, 'Ordine e spedizione' AS oggetto, 'Ho sbagliato l''indirizzo di consegna per l''ordine #2, possiamo modificarlo?' AS testo, 'letto' AS stato) t

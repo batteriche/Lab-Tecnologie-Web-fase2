@@ -75,13 +75,15 @@ class HomeController extends Controller
      * Converte i prodotti grezzi dal model in stringhe già pronte per la view
      * (il template non fa formattazioni: i prezzi arrivano già in "€ 24,90").
      */
+// DOPO
     private function prepareProducts(array $prodotti): array
     {
         return array_map(function ($p) {
-            $prezzoOld = $p['prezzo_scontato'] !== null ? Product::formatPrezzo((float) $p['prezzo_scontato']) : '';
+            $haSconto = $p['prezzo_scontato'] !== null;
+            $prezzoPieno = Product::formatPrezzo((float) $p['prezzo']);
 
-            $p['prezzo']         = Product::formatPrezzo((float) $p['prezzo']);
-            $p['badge_sconto']   = $prezzoOld !== '' ? ' <span class="old">' . $prezzoOld . '</span>' : '';
+            $p['prezzo']       = $haSconto ? Product::formatPrezzo((float) $p['prezzo_scontato']) : $prezzoPieno;
+            $p['badge_sconto'] = $haSconto ? ' <span class="old">' . $prezzoPieno . '</span>' : '';
             $p['badge_refurb']   = $p['condizione'] === 'ricondizionato'
                 ? '<span class="tag-refurb">Ricondizionato</span>'
                 : '';

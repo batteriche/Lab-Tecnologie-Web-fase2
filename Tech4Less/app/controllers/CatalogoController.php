@@ -70,10 +70,13 @@ class CatalogoController extends Controller
             ? $productModel->perCategoria((int) $categoriaAttiva['id'])
             : $productModel->tutti();
 
+        // DOPO
         $prodotti = array_map(function ($p) {
-            $prezzoOld = $p['prezzo_scontato'] !== null ? Product::formatPrezzo((float) $p['prezzo_scontato']) : '';
-            $p['prezzo']        = Product::formatPrezzo((float) $p['prezzo']);
-            $p['badge_sconto']  = $prezzoOld !== '' ? ' <span class="old">' . $prezzoOld . '</span>' : '';
+            $haSconto = $p['prezzo_scontato'] !== null;
+            $prezzoPieno = Product::formatPrezzo((float) $p['prezzo']);
+
+            $p['prezzo']       = $haSconto ? Product::formatPrezzo((float) $p['prezzo_scontato']) : $prezzoPieno;
+            $p['badge_sconto'] = $haSconto ? ' <span class="old">' . $prezzoPieno . '</span>' : '';
             unset($p['prezzo_scontato']);
             return $p;
         }, $prodotti);

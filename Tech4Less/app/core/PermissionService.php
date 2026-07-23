@@ -32,7 +32,7 @@ class PermissionService
 
         if (!self::can(Auth::id(), $serviceUsername)) {
             http_response_code(403);
-            require VIEWS_PATH . 'frontend/403.tpl.php';
+            require VIEWS_PATH . 'frontend/403.html';
             exit;
         }
     }

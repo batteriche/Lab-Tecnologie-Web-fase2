@@ -43,9 +43,17 @@ class CartService
         $prezzoUnitario = (float) ($prodotto['prezzo_scontato'] ?? $prodotto['prezzo']);
 
         $rigaEsistente = $this->cartModel->trovaRigaProdotto($cartId, $productId);
+        $quantitaGiaNelCarrello = $rigaEsistente ? (int) $rigaEsistente['quantita'] : 0;
+        $quantitaTotaleRichiesta = $quantitaGiaNelCarrello + $quantita;
+
+        if ($quantitaTotaleRichiesta > (int) $prodotto['giacenza']) {
+            throw new InvalidArgumentException(
+                'Giacenza insufficiente: disponibili ' . ((int) $prodotto['giacenza'] - $quantitaGiaNelCarrello) . ' pezzi.'
+            );
+        }
 
         if ($rigaEsistente) {
-            $this->cartModel->aggiornaQuantita((int) $rigaEsistente['id'], (int) $rigaEsistente['quantita'] + $quantita);
+            $this->cartModel->aggiornaQuantita((int) $rigaEsistente['id'], $quantitaTotaleRichiesta);
         } else {
             $this->cartModel->aggiungiRiga($cartId, $productId, $quantita, $prezzoUnitario);
         }
